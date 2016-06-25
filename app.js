@@ -16,8 +16,8 @@ app.use(bodyParser.json()); //support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); //support encoded bodies
 
 app.post('/', function(req, res){
-  var name = req.body.name;
-  res.send( 'hello ' + name );
+  var name = {'name': req.body.name};
+  res.json(name);
 })
 app.listen(8000, function () {
   console.log('Hello from the Raspberry Pi!');
