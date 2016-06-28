@@ -10,8 +10,7 @@ app.get('/', function(req, res){
 })
 app.post('/', function(req, res){
   var color = req.body;
-  var json = res.json(color);
-  console.log(json);
+  res.json(color);
 })
 app.listen(8000, function () {
   console.log('Hello from the Raspberry Pi!');
