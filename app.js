@@ -13,6 +13,6 @@ app.post('/', function(req, res){
   res.json(color);
   console.log(color);
 })
-app.listen(8000, function () {
+app.listen(80, function () {
   console.log('Hello from the Raspberry Pi!');
 });
