@@ -11,6 +11,7 @@ app.get('/', function(req, res){
 app.post('/', function(req, res){
   var color = req.body;
   res.json(color);
+  console.log(color);
 })
 app.listen(8000, function () {
   console.log('Hello from the Raspberry Pi!');
