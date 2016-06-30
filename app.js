@@ -9,8 +9,8 @@ app.get('/', function(req, res){
   res.send('hell0 world');
 })
 app.post('/', function(req, res){
-  var color = req.body;
-  res.json(color);
+  res.json(req.body);
+  var color = req.body.color;
   console.log(req.body);
 })
 app.listen(8000, function () {
