@@ -9,9 +9,11 @@ app.get('/', function(req, res){
   res.send('hell0 world');
 })
 app.post('/', function(req, res){
-  res.json(req.body);
-  var color = req.body.color;
+  var color    = req.body.color;
+  var power    = req.body.power;
+  var response = 'The ' + color + ' led is now ' + power;
   console.log(req.body);
+  res.json(response);
 })
 app.listen(8000, function () {
   console.log('Hello from the Raspberry Pi!');
