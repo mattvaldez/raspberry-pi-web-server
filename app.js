@@ -9,9 +9,7 @@ app.get('/', function(req, res){
   res.send('hell0 world');
 })
 app.post('/', function(req, res){
-  var color    = req.body.color;
-  var power    = req.body.power;
-  var response = 'The ' + color + ' led is now ' + power;
+  var response = req.body
   console.log(req.body);
   res.json(response);
 })
