@@ -1,8 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var GPIO = require('onoff').Gpio,
-    led = new GPIO(14, 'out');
+var Gpio = require('onoff').Gpio;
 
 app.use(bodyParser.json()); //support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); //support encoded bodies
@@ -11,8 +10,22 @@ app.get('/', function(req, res){
   res.send('hell0 world');
 })
 app.post('/', function(req, res){
-  function light(power) {
- 
+var position = req.body.position;
+if(position == 0){
+  light(14, req.body.power);
+}
+else if(position == 1){
+  light(15, req.body.power);
+}
+else if(position == 2){
+  light(18, req.body.power);
+}
+else{
+  console.log('not a choice');
+}
+
+  function light(pin, power) {
+  var led = new Gpio(pin, 'out');
   if(power === true) {
     console.log('on');
     led.writeSync(1);
@@ -21,7 +34,6 @@ app.post('/', function(req, res){
     led.writeSync(0);
   }
  } 
-  light(req.body.power);
   var response = req.body;
   res.json('response');
 })
