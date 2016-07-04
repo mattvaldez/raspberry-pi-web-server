@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var GPIO = require('onoff').Gpio,
+    led = new GPIO(14, 'out');
 
 app.use(bodyParser.json()); //support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); //support encoded bodies
@@ -9,10 +11,21 @@ app.get('/', function(req, res){
   res.send('hell0 world');
 })
 app.post('/', function(req, res){
-  var response = req.body
-  console.log(req.body);
-  res.json(response);
+  function light(power) {
+ 
+  if(power === true) {
+    console.log('on');
+    led.writeSync(1);
+  } else {
+    console.log('off');
+    led.writeSync(0);
+  }
+ } 
+  light(req.body.power);
+  var response = req.body;
+  res.json('response');
 })
+
 app.listen(8000, function () {
   console.log('Hello from the Raspberry Pi!');
 });
