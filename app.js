@@ -25,11 +25,11 @@ app.post('/', function(req, res){
     var led = new Gpio(pin, 'out');
     if(power === true) {
       led.writeSync(1);
-      res.json('Response from the Pi: LED in position # ' + position + 'is now on';
+      res.json('Response from the Pi: LED in position ' + position + ' is now on');
     }
     else {
       led.writeSync(0);
-      res.json('Response from the Pi: LED in position # ' + position + 'is now off';
+      res.json('Response from the Pi: LED in position  ' + position + ' is now off');
     }
   }
 })
