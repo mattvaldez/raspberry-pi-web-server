@@ -7,36 +7,36 @@ app.use(bodyParser.json()); //support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); //support encoded bodies
 
 app.post('/', function(req, res){
-var position = req.body.position;
-if(position == 0){
-  light(14, req.body.power);
-}
-else if(position == 1){
-  light(15, req.body.power);
-}
-else if(position == 2){
-  light(18, req.body.power);
-}
-else{
-  console.log('not a choice');
-}
+  var position = req.body.position;
+  if(position == 0){
+    light(14, req.body.power);
+  }
+  else if(position == 1){
+    light(15, req.body.power);
+  }
+  else if(position == 2){
+    light(18, req.body.power);
+  }
+  else{
+    console.log('not a choice');
+  }
 
   function light(pin, power) {
-  var led = new Gpio(pin, 'out');
-  if(power === true) {
-    console.log('on');
-    led.writeSync(1);
-  } else {
-    console.log('off');
-    led.writeSync(0);
+    var led = new Gpio(pin, 'out');
+    if(power === true) {
+      var res_power = 'on'
+      led.writeSync(1);
+    }
+    else {
+      var res_power = 'off'
+      led.writeSync(0);
+    }
   }
- }
-  var response = req.body;
-  res.json('response');
+  res.json('Response from the Pi: LED in position # ' + position + 'is now ' +  res_power);
 })
 
 app.listen(8000, function () {
-  console.log('Hello from the Raspberry Pi!');
+  console.log('Hello Standard Code, from the Raspberry Pi!');
 });
 
 app.all("/*", function (req, res, next) {
