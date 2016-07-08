@@ -6,9 +6,6 @@ var Gpio = require('onoff').Gpio;
 app.use(bodyParser.json()); //support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); //support encoded bodies
 
-app.get('/', function(req, res){
-  res.send('hell0 world');
-})
 app.post('/', function(req, res){
 var position = req.body.position;
 if(position == 0){
@@ -33,7 +30,7 @@ else{
     console.log('off');
     led.writeSync(0);
   }
- } 
+ }
   var response = req.body;
   res.json('response');
 })
